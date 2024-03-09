@@ -31,6 +31,14 @@ body {
   font-weight: 500;
 }
 
+.create-collection img {
+  transition: transform 0.3s ease;
+}
+
+.create-collection img:hover {
+  transform: scale(1.1);
+}
+
 .collection-content {
   display: grid;
   grid-template-columns: repeat(5, minmax(50px, 1fr));
