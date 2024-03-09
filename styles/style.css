@@ -45,3 +45,64 @@ body {
   grid-auto-flow: column;
   overflow: scroll;
 }
+
+.create-collections-modal {
+  display: none;
+  position: fixed;
+  color: rgb(255, 255, 255);
+  padding: 30px;
+  border: 4px double rgb(220, 198, 251);
+  border-radius: 30px;
+  background-color: rgba(71, 19, 119, 0.85);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.509);
+  width: 25%;
+}
+
+.create-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.create-modal-form input[type="text"] {
+  font-family: "Fredoka", sans-serif;
+  border-radius: 20px;
+  border: 1px solid white;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.create-modal-form button {
+  font-family: "Fredoka", sans-serif;
+  padding: 10px 5px;
+  margin-left: 20%;
+  margin-right: 20%;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 50px;
+  border: 5px double white;
+  color: rgb(39, 0, 54);
+  background-color: rgb(193, 193, 193);
+  transition: transform 0.3s ease;
+}
+
+.create-modal-form button:hover,
+button:focus {
+  transform: scale(1.1);
+  background-color: rgb(241, 216, 247);
+}
+
+.close {
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+  transform: scale(1.1);
+}

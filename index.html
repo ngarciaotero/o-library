@@ -9,10 +9,26 @@
   <body>
     <div class="collections-cont">
       <div class="create-collection">
-        <img src="/images/collection.png" alt="Add Collection" />
+        <img
+          src="/images/collection.png"
+          alt="Add Collection"
+          id="openModalButton"
+        />
         <span>Create New Collection</span>
       </div>
       <div class="collection-content"></div>
+    </div>
+
+    <div class="create-collections-modal">
+      <span class="close">&times;</span>
+      <h1>Create New Collection</h1>
+      <form class="create-modal-form">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required />
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required />
+        <button type="submit">Create</button>
+      </form>
     </div>
 
     <script src="scripts/script.js"></script>

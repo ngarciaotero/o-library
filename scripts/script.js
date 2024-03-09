@@ -1,15 +1,13 @@
+const img = document.getElementById("openModalButton");
+const modal = document.getElementsByClassName("create-collections-modal")[0];
+const span = document.getElementsByClassName("close")[0];
+const form = document.getElementsByClassName("create-modal-form")[0];
+
 function Library(name) {
   this.name = name;
   this.list = [];
-  // Option 1
-  this.addBookToLibrary = function () {
-    const title = prompt("Book Title: ");
-    const author = prompt("Book author: ");
-    const book = new Book(title, author);
-    this.list.push(book);
-  };
 }
-// Option 2
+
 Library.prototype.addBookToLibrary = function () {
   const title = prompt("Book Title: ");
   const author = prompt("Book author: ");
@@ -22,9 +20,15 @@ function Book(title, author) {
   this.author = author;
 }
 
-// function addBookToLibrary() {
-//   const title = prompt("Book Title: ");
-//   const author = prompt("Book author: ");
-//   const book = new Book(title, author);
-//   myLibrary.push(book);
-// }
+img.addEventListener("click", () => {
+  if (modal) {
+    modal.style.display = "block";
+  }
+});
+
+span.addEventListener("click", () => {
+  if (modal) {
+    modal.style.display = "none";
+    form.reset();
+  }
+});
