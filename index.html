@@ -33,7 +33,13 @@
       <h1>Create New Collection</h1>
       <form class="create-modal-form">
         <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required />
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          maxlength="27"
+          required
+        />
         <label for="image">Upload Image:</label>
         <input type="file" id="image" name="image" accept="image/*" required />
         <button type="submit">Create</button>
