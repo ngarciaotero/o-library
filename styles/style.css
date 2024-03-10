@@ -14,6 +14,7 @@ body {
 .collections-cont {
   display: grid;
   grid-template-columns: minmax(50px, 1fr) 5fr;
+  grid-gap: 3em;
   background-color: rgba(238, 234, 241, 0.796);
   border-radius: 30px;
   border: 2px solid rgb(5, 105, 227);
