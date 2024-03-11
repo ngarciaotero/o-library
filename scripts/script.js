@@ -1,8 +1,11 @@
 const img = document.getElementById("openModalButton");
-const modal = document.getElementsByClassName("create-collections-modal")[0];
-const span = document.getElementsByClassName("close")[0];
+const collectionModal = document.getElementsByClassName(
+  "create-collections-modal"
+)[0];
+const spans = document.querySelectorAll(".close");
 const form = document.getElementsByClassName("create-modal-form")[0];
 const collectionContent = document.querySelector(".collection-content");
+const libraryModal = document.querySelector(".library-modal");
 
 function Library(name) {
   this.name = name;
@@ -22,16 +25,7 @@ function Book(title, author) {
 }
 
 img.addEventListener("click", () => {
-  if (modal) {
-    modal.style.display = "block";
-  }
-});
-
-span.addEventListener("click", () => {
-  if (modal) {
-    modal.style.display = "none";
-    form.reset();
-  }
+  openModal(collectionModal);
 });
 
 form.addEventListener("submit", function (event) {
@@ -53,6 +47,30 @@ form.addEventListener("submit", function (event) {
 
   collectionContent.appendChild(collectionCard);
 
+  collectionCard.addEventListener("click", () => openModal(libraryModal));
+
   form.reset();
-  modal.style.display = "none";
+  collectionModal.style.display = "none";
 });
+
+function closeModal(modal) {
+  if (modal) {
+    modal.style.display = "none";
+    if (modal === collectionModal) {
+      form.reset();
+    }
+  }
+}
+
+spans.forEach((span) => {
+  span.addEventListener("click", () => {
+    closeModal(libraryModal);
+    closeModal(collectionModal);
+  });
+});
+
+function openModal(modal) {
+  if (modal) {
+    modal.style.display = "block";
+  }
+}

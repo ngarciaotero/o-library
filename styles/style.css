@@ -151,7 +151,7 @@ body {
 }
 
 .library-modal {
-  /* display: none; */
+  display: none;
   position: fixed;
   border: 2px solid purple;
   border-radius: 30px;
