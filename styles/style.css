@@ -267,6 +267,21 @@ tr:nth-child(odd) {
   background-color: rgb(212, 212, 255);
 }
 
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.star {
+  color: #5c5c5c;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.star.filled {
+  color: gold;
+}
+
 .library-content {
   display: flex;
   flex-direction: column;
