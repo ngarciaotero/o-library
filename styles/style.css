@@ -281,6 +281,7 @@ tr:nth-child(odd) {
 
 .library-content button:hover,
 .library-content button:focus {
+  cursor: pointer;
   transform: scale(1.1);
   background-color: rgb(182, 203, 255);
 }
