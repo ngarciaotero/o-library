@@ -78,7 +78,8 @@ body {
   font-size: 17px;
 }
 
-.create-modal-form button {
+.create-modal-form button,
+.library-content button {
   font-family: "Fredoka", sans-serif;
   padding: 10px 5px;
   margin-left: 20%;
@@ -147,4 +148,99 @@ body {
   left: 10px;
   right: 10px;
   margin: 0;
+}
+
+.library-modal {
+  /* display: none; */
+  position: fixed;
+  border: 2px solid purple;
+  border-radius: 30px;
+  width: 90%;
+  height: 80%;
+  padding: 25px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.509);
+  background-color: rgb(235, 223, 249);
+}
+
+.library-modal table {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 9px;
+}
+
+.title-input {
+  width: 95%;
+  margin-left: 4px;
+  padding: 5px;
+}
+
+.author-input {
+  width: 90%;
+  margin-left: 4px;
+  padding: 5px;
+}
+
+.year-input {
+  margin-left: 5px;
+  width: 80%;
+  padding: 5px;
+}
+
+.trash-icon img {
+  height: 70%;
+  width: 70%;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 2%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 30%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 20%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 10%;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 11%;
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+  width: 20%;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(212, 212, 255);
+}
+
+.library-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.library-content button {
+  margin: 20px;
+  padding: 20px;
+}
+
+.library-content button:hover,
+.library-content button:focus {
+  transform: scale(1.1);
+  background-color: rgb(182, 203, 255);
 }
