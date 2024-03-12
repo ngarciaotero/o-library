@@ -53,6 +53,56 @@ form.addEventListener("submit", function (event) {
   collectionModal.style.display = "none";
 });
 
+function createDefaultCards() {
+  const defaultCards = [
+    {
+      imgSrc: "images/letter.png",
+      imgAlt: "Letter icon",
+      subject: "Writers' Epistolary Tales",
+    },
+    {
+      imgSrc: "images/abstract-shape.png",
+      imgAlt: "Abstract shapes",
+      subject: "Classic Art Explorations",
+    },
+    {
+      imgSrc: "images/gargoyle.png",
+      imgAlt: "Gargoyle icon",
+      subject: "Ghoulish Guide to Holiday Horror",
+    },
+    {
+      imgSrc: "images/cupid.png",
+      imgAlt: "Cupid icon",
+      subject: "Eros",
+    },
+    {
+      imgSrc: "images/kraken.png",
+      imgAlt: "Mythical sea monster icon",
+      subject: "Greek Mythology Monsters",
+    },
+  ];
+
+  defaultCards.forEach((card) => {
+    const collectionCard = document.createElement("div");
+    collectionCard.classList.add("collection-item");
+
+    const cardImage = document.createElement("img");
+    cardImage.src = card.imgSrc;
+    cardImage.alt = card.imgAlt;
+    collectionCard.appendChild(cardImage);
+
+    const cardSubject = document.createElement("p");
+    cardSubject.textContent = card.subject;
+    collectionCard.appendChild(cardSubject);
+
+    collectionContent.appendChild(collectionCard);
+
+    collectionCard.addEventListener("click", () => openModal(libraryModal));
+  });
+}
+
+window.addEventListener("load", createDefaultCards);
+
 function closeModal(modal) {
   if (modal) {
     modal.style.display = "none";
