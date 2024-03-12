@@ -6,6 +6,7 @@ const spans = document.querySelectorAll(".close");
 const form = document.getElementsByClassName("create-modal-form")[0];
 const collectionContent = document.querySelector(".collection-content");
 const libraryModal = document.querySelector(".library-modal");
+const libraryModalSubject = document.querySelector(".library-subject");
 
 function Library(name) {
   this.name = name;
@@ -47,7 +48,10 @@ form.addEventListener("submit", function (event) {
 
   collectionContent.appendChild(collectionCard);
 
-  collectionCard.addEventListener("click", () => openModal(libraryModal));
+  collectionCard.addEventListener("click", () => {
+    libraryModalSubject.textContent = subject;
+    openModal(libraryModal);
+  });
 
   form.reset();
   collectionModal.style.display = "none";
@@ -97,7 +101,10 @@ function createDefaultCards() {
 
     collectionContent.appendChild(collectionCard);
 
-    collectionCard.addEventListener("click", () => openModal(libraryModal));
+    collectionCard.addEventListener("click", () => {
+      libraryModalSubject.textContent = card.subject;
+      openModal(libraryModal);
+    });
   });
 }
 
