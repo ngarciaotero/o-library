@@ -178,11 +178,12 @@ body {
 }
 
 .trash-icon {
+  cursor: pointer;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 35%;
+  width: 50%;
   height: auto;
   min-width: 15px;
   min-height: 15px;
@@ -191,6 +192,13 @@ body {
   box-sizing: border-box;
   resize: both;
   overflow: auto;
+  transition: transform 0.3s ease;
+}
+
+.trash-icon:hover {
+  top: 30%;
+  left: 30%;
+  transform: scale(1.5);
 }
 
 .title-input,
