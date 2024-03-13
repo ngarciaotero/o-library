@@ -7,6 +7,9 @@ const form = document.getElementsByClassName("create-modal-form")[0];
 const collectionContent = document.querySelector(".collection-content");
 const libraryModal = document.querySelector(".library-modal");
 const libraryModalSubject = document.querySelector(".library-subject");
+const trashIcon = document.querySelector(".trash-icon");
+const closedTrashSrc = trashIcon.src;
+const openTrashSrc = "../images/open-bin.png";
 
 function Library(name) {
   this.name = name;
@@ -131,3 +134,11 @@ function openModal(modal) {
     modal.style.display = "block";
   }
 }
+
+trashIcon.addEventListener("mouseenter", function () {
+  this.src = openTrashSrc;
+});
+
+trashIcon.addEventListener("mouseleave", function () {
+  this.src = closedTrashSrc;
+});
