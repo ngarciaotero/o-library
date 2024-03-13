@@ -2,7 +2,7 @@ const img = document.getElementById("openModalButton");
 const collectionModal = document.getElementsByClassName(
   "create-collections-modal"
 )[0];
-const spans = document.querySelectorAll(".close");
+const closeControls = document.querySelectorAll(".close");
 const form = document.getElementsByClassName("create-modal-form")[0];
 const collectionContent = document.querySelector(".collection-content");
 const libraryModal = document.querySelector(".library-modal");
@@ -119,8 +119,8 @@ function closeModal(modal) {
   }
 }
 
-spans.forEach((span) => {
-  span.addEventListener("click", () => {
+closeControls.forEach((closeControl) => {
+  closeControl.addEventListener("click", () => {
     closeModal(libraryModal);
     closeModal(collectionModal);
   });
