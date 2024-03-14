@@ -10,6 +10,9 @@ const libraryModalSubject = document.querySelector(".library-subject");
 const trashIcon = document.querySelector(".trash-icon");
 const closedTrashSrc = trashIcon.src;
 const openTrashSrc = "../images/open-bin.png";
+const stars = document.querySelectorAll(".star");
+const starsContainer = document.querySelector(".star-rating");
+let clickedStarIndex = -1;
 
 function Library(name) {
   this.name = name;
@@ -141,4 +144,43 @@ trashIcon.addEventListener("mouseenter", function () {
 
 trashIcon.addEventListener("mouseleave", function () {
   this.src = closedTrashSrc;
+});
+
+function handleStarHover(event) {
+  const hoveredStar = event.target;
+  const starIndex = Array.from(stars).indexOf(hoveredStar);
+
+  stars.forEach((star) => {
+    star.style.color = "#c0c0c0";
+  });
+
+  for (let i = 0; i <= starIndex; i++) {
+    stars[i].style.color = "rgb(255, 146, 4)";
+  }
+
+  if (clickedStarIndex !== -1) {
+    for (let i = 0; i <= clickedStarIndex; i++) {
+      stars[i].style.color = "rgb(255, 146, 4)";
+    }
+  }
+}
+
+function setStarRating(event) {
+  const clickedStar = event.target;
+  clickedStarIndex = Array.from(stars).indexOf(clickedStar);
+
+  for (let i = 0; i <= clickedStarIndex; i++) {
+    stars[i].style.color = "rgb(255, 146, 4)";
+  }
+}
+
+stars.forEach((star) => {
+  star.addEventListener("mouseover", handleStarHover);
+  star.addEventListener("click", setStarRating);
+});
+
+starsContainer.addEventListener("mouseleave", function () {
+  stars.forEach((star, index) => {
+    if (index > clickedStarIndex) star.style.color = "#c0c0c0";
+  });
 });

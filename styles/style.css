@@ -299,13 +299,9 @@ tr:nth-child(odd) {
 
 .star {
   flex: 1;
-  color: #5c5c5c;
+  color: #c0c0c0;
   font-size: 1em;
   cursor: pointer;
-}
-
-.star.filled {
-  color: gold;
 }
 
 .library-content {
