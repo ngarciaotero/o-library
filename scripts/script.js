@@ -253,7 +253,6 @@ function createNewBookRow() {
   });
 
   bookList.appendChild(newRow);
-  // return newRow;
 }
 
 addBookBtn.addEventListener("click", () => {
