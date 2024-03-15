@@ -7,12 +7,9 @@ const form = document.getElementsByClassName("create-modal-form")[0];
 const collectionContent = document.querySelector(".collection-content");
 const libraryModal = document.querySelector(".library-modal");
 const libraryModalSubject = document.querySelector(".library-subject");
-const trashIcon = document.querySelector(".trash-icon");
-const closedTrashSrc = trashIcon.src;
-const openTrashSrc = "../images/open-bin.png";
-const stars = document.querySelectorAll(".star");
-const starsContainer = document.querySelector(".star-rating");
-let clickedStarIndex = -1;
+const addBookBtn = document.querySelector(".library-modal button");
+const bookTableBody = document.querySelector(".library-modal table tbody");
+const bookList = document.querySelector(".bookList");
 
 function Library(name) {
   this.name = name;
@@ -111,6 +108,8 @@ function createDefaultCards() {
       libraryModalSubject.textContent = card.subject;
       openModal(libraryModal);
     });
+
+    createNewBookRow();
   });
 }
 
@@ -138,49 +137,125 @@ function openModal(modal) {
   }
 }
 
-trashIcon.addEventListener("mouseenter", function () {
-  this.src = openTrashSrc;
-});
+function createNewBookRow() {
+  const newRow = document.createElement("tr");
 
-trashIcon.addEventListener("mouseleave", function () {
-  this.src = closedTrashSrc;
-});
+  const trashCell = document.createElement("td");
+  const trashIcon = document.createElement("img");
+  trashIcon.classList.add("trash-icon");
+  trashIcon.src = "../images/closed-bin.png";
+  trashIcon.alt = "Closed trash bin";
+  trashCell.appendChild(trashIcon);
 
-function handleStarHover(event) {
-  const hoveredStar = event.target;
-  const starIndex = Array.from(stars).indexOf(hoveredStar);
+  const titleCell = document.createElement("td");
+  const titleInput = document.createElement("input");
+  titleInput.type = "text";
+  titleInput.classList.add("title-input");
+  titleCell.appendChild(titleInput);
 
-  stars.forEach((star) => {
-    star.style.color = "#c0c0c0";
-  });
+  const authorCell = document.createElement("td");
+  const authorInput = document.createElement("input");
+  authorInput.type = "text";
+  authorInput.classList.add("author-input");
+  authorCell.appendChild(authorInput);
 
-  for (let i = 0; i <= starIndex; i++) {
-    stars[i].style.color = "rgb(255, 146, 4)";
+  const yearCell = document.createElement("td");
+  const yearInput = document.createElement("input");
+  yearInput.type = "number";
+  yearInput.classList.add("year-input");
+  yearCell.appendChild(yearInput);
+
+  const readCell = document.createElement("td");
+  const readLabel = document.createElement("label");
+  readLabel.classList.add("switch");
+  const readInput = document.createElement("input");
+  readInput.type = "checkbox";
+  const readSlider = document.createElement("span");
+  readSlider.classList.add("slider");
+  readLabel.appendChild(readInput);
+  readLabel.appendChild(readSlider);
+  readCell.appendChild(readLabel);
+
+  const ratingCell = document.createElement("td");
+  const ratingContainer = document.createElement("div");
+  ratingContainer.classList.add("star-rating");
+  const stars = [];
+
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement("span");
+    star.classList.add("star");
+    const starSymbol = document.createTextNode("\u2605");
+    star.appendChild(starSymbol);
+    ratingContainer.appendChild(star);
+    stars.push(star);
   }
 
-  if (clickedStarIndex !== -1) {
+  ratingCell.appendChild(ratingContainer);
+
+  newRow.appendChild(trashCell);
+  newRow.appendChild(titleCell);
+  newRow.appendChild(authorCell);
+  newRow.appendChild(yearCell);
+  newRow.appendChild(readCell);
+  newRow.appendChild(ratingCell);
+
+  const closedTrashSrc = trashIcon.src;
+  const openTrashSrc = "../images/open-bin.png";
+
+  trashIcon.addEventListener("mouseenter", function () {
+    this.src = openTrashSrc;
+  });
+
+  trashIcon.addEventListener("mouseleave", function () {
+    this.src = closedTrashSrc;
+  });
+
+  const starsContainer = ratingContainer;
+  let clickedStarIndex = -1;
+
+  function handleStarHover(event) {
+    const hoveredStar = event.target;
+    const starIndex = Array.from(stars).indexOf(hoveredStar);
+
+    stars.forEach((star) => {
+      star.style.color = "#c0c0c0";
+    });
+
+    for (let i = 0; i <= starIndex; i++) {
+      stars[i].style.color = "rgb(255, 146, 4)";
+    }
+
+    if (clickedStarIndex !== -1) {
+      for (let i = 0; i <= clickedStarIndex; i++) {
+        stars[i].style.color = "rgb(255, 146, 4)";
+      }
+    }
+  }
+
+  function setStarRating(event) {
+    const clickedStar = event.target;
+    clickedStarIndex = Array.from(stars).indexOf(clickedStar);
+
     for (let i = 0; i <= clickedStarIndex; i++) {
       stars[i].style.color = "rgb(255, 146, 4)";
     }
   }
-}
 
-function setStarRating(event) {
-  const clickedStar = event.target;
-  clickedStarIndex = Array.from(stars).indexOf(clickedStar);
-
-  for (let i = 0; i <= clickedStarIndex; i++) {
-    stars[i].style.color = "rgb(255, 146, 4)";
-  }
-}
-
-stars.forEach((star) => {
-  star.addEventListener("mouseover", handleStarHover);
-  star.addEventListener("click", setStarRating);
-});
-
-starsContainer.addEventListener("mouseleave", function () {
-  stars.forEach((star, index) => {
-    if (index > clickedStarIndex) star.style.color = "#c0c0c0";
+  stars.forEach((star) => {
+    star.addEventListener("mouseover", handleStarHover);
+    star.addEventListener("click", setStarRating);
   });
+
+  starsContainer.addEventListener("mouseleave", function () {
+    stars.forEach((star, index) => {
+      if (index > clickedStarIndex) star.style.color = "#c0c0c0";
+    });
+  });
+
+  bookList.appendChild(newRow);
+}
+
+addBookBtn.addEventListener("click", () => {
+  const newRow = createNewBookRow();
+  bookTableBody.appendChild(newRow);
 });

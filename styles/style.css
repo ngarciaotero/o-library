@@ -191,13 +191,6 @@ body {
   box-sizing: border-box;
   resize: both;
   overflow: auto;
-  transition: transform 0.3s ease;
-}
-
-.trash-icon:hover {
-  top: 30%;
-  left: 30%;
-  transform: scale(1.5);
 }
 
 .title-input,
@@ -316,9 +309,8 @@ tr:nth-child(odd) {
   padding: 20px;
 }
 
-.library-content button:hover,
-.library-content button:focus {
+.library-content button:hover {
   cursor: pointer;
   transform: scale(1.1);
-  background-color: rgb(182, 203, 255);
+  background-color: rgb(158, 212, 249);
 }
