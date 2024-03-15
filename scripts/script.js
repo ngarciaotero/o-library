@@ -1,4 +1,4 @@
-const img = document.getElementById("openModalButton");
+const createLibraryBtn = document.querySelector(".create-library-btn");
 const collectionModal = document.getElementsByClassName(
   "create-collections-modal"
 )[0];
@@ -28,7 +28,7 @@ function Book(title, author) {
   this.author = author;
 }
 
-img.addEventListener("click", () => {
+createLibraryBtn.addEventListener("click", () => {
   openModal(collectionModal);
 });
 
