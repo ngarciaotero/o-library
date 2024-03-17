@@ -152,8 +152,8 @@ createLibraryForm.addEventListener("submit", function (event) {
 function closeModal(modal) {
   if (modal) {
     modal.style.display = "none";
-    if (modal === collectionModal) {
-      form.reset();
+    if (modal === createLibraryModal) {
+      createLibraryForm.reset();
     }
   }
 }
@@ -161,7 +161,7 @@ function closeModal(modal) {
 closeControls.forEach((closeControl) => {
   closeControl.addEventListener("click", () => {
     closeModal(libraryModal);
-    closeModal(collectionModal);
+    closeModal(createLibraryModal);
   });
 });
 
