@@ -11,9 +11,10 @@ const addBookBtn = document.querySelector(".library-modal button");
 const bookTableBody = document.querySelector(".library-modal table tbody");
 const bookList = document.querySelector(".bookList");
 
-function Library(name) {
-  this.name = name;
-  this.list = [];
+function Library(subject, imageFile) {
+  this.subject = subject;
+  this.imageFile = imageFile;
+  this.books = [];
 }
 
 Library.prototype.addBookToLibrary = function () {
