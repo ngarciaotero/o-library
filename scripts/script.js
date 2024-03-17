@@ -17,11 +17,8 @@ function Library(subject, imageFile) {
   this.books = [];
 }
 
-Library.prototype.addBookToLibrary = function () {
-  const title = prompt("Book Title: ");
-  const author = prompt("Book author: ");
-  const book = new Book(title, author);
-  this.list.push(book);
+Library.prototype.addBook = function (book) {
+  this.books.push(book);
 };
 
 function Book(title, author) {
