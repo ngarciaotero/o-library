@@ -21,9 +21,10 @@ Library.prototype.addBook = function (book) {
   this.books.push(book);
 };
 
-function Book(title, author) {
+function Book(title, author, year) {
   this.title = title;
   this.author = author;
+  this.year = year;
 }
 
 createLibraryBtn.addEventListener("click", () => {
