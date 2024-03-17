@@ -11,7 +11,7 @@ body {
   font-family: "Fredoka", sans-serif;
 }
 
-.collections-cont {
+.library-dashboard {
   display: grid;
   grid-template-columns: minmax(50px, 1fr) 5fr;
   grid-gap: 3em;
@@ -24,7 +24,7 @@ body {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.509);
 }
 
-.create-collection {
+.create-library-container {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -32,16 +32,16 @@ body {
   font-weight: 500;
 }
 
-.create-collection img {
+.create-library-container img {
   transition: transform 0.3s ease;
 }
 
-.create-collection img:hover {
+.create-library-container img:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.collection-content {
+.libraries-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-rows: 260px;
@@ -51,7 +51,7 @@ body {
   overflow-y: scroll;
 }
 
-.create-collections-modal {
+.create-library-modal {
   display: none;
   position: fixed;
   color: rgb(255, 255, 255);
@@ -63,14 +63,14 @@ body {
   width: 25%;
 }
 
-.create-modal-form {
+.create-library-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   font-size: 25px;
 }
 
-.create-modal-form input[type="text"] {
+.create-library-form input[type="text"] {
   font-family: "Fredoka", sans-serif;
   border-radius: 20px;
   border: 1px solid white;
@@ -78,7 +78,7 @@ body {
   font-size: 17px;
 }
 
-.create-modal-form button,
+.create-library-form button,
 .library-content button {
   font-family: "Fredoka", sans-serif;
   padding: 10px 5px;
@@ -93,8 +93,8 @@ body {
   transition: transform 0.3s ease;
 }
 
-.create-modal-form button:hover,
-.create-modal-form button:focus {
+.create-library-form button:hover,
+.create-library-form button:focus {
   transform: scale(1.1);
   background-color: rgb(241, 216, 247);
 }
@@ -113,7 +113,7 @@ body {
   transform: scale(1.1);
 }
 
-.collection-item {
+.library-card-item {
   display: flex;
   justify-content: center;
   border: 1px solid rgba(0, 50, 97, 0.435);
@@ -125,8 +125,8 @@ body {
   position: relative;
 }
 
-.collection-item:hover,
-.collection-item:focus {
+.library-card-item:hover,
+.library-card-item:focus {
   cursor: pointer;
   border: 3px solid rgb(250, 240, 132);
   box-shadow: 10px 10px 10px rgba(253, 243, 179, 0.509);
@@ -135,14 +135,14 @@ body {
   transform: scale(0.9);
 }
 
-.collection-item img {
+.library-card-item img {
   border-radius: 5px;
   max-width: 100%;
   max-height: 85%;
   object-fit: contain;
 }
 
-.collection-item p {
+.library-card-item p {
   position: absolute;
   bottom: 5px;
   left: 10px;

@@ -1,10 +1,8 @@
 const createLibraryBtn = document.querySelector(".create-library-btn");
-const collectionModal = document.getElementsByClassName(
-  "create-collections-modal"
-)[0];
+const createLibraryModal = document.querySelector(".create-library-modal");
 const closeControls = document.querySelectorAll(".close");
-const form = document.getElementsByClassName("create-modal-form")[0];
-const collectionContent = document.querySelector(".collection-content");
+const createLibraryForm = document.querySelector(".create-library-form");
+const librariesContainer = document.querySelector(".libraries-container");
 const libraryModal = document.querySelector(".library-modal");
 const libraryModalSubject = document.querySelector(".library-subject");
 const addBookBtn = document.querySelector(".library-modal button");
