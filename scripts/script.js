@@ -25,92 +25,129 @@ function Book(title, author, year) {
   this.year = year;
 }
 
-createLibraryBtn.addEventListener("click", () => {
-  openModal(collectionModal);
-});
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const subject = form.querySelector("#subject").value;
-  const imageFile = form.querySelector("#image").files[0];
-
-  const collectionCard = document.createElement("div");
-  collectionCard.classList.add("collection-item");
+function createLibraryCard(library) {
+  const libraryCard = document.createElement("div");
+  libraryCard.classList.add("library-card-item");
 
   const cardImage = document.createElement("img");
-  cardImage.src = URL.createObjectURL(imageFile);
-  collectionCard.appendChild(cardImage);
+  if (library.imageFile instanceof File) {
+    cardImage.src = URL.createObjectURL(library.imageFile);
+  } else if (typeof library.imageFile === "string") {
+    if (library.imageFile.startsWith("data:")) {
+      cardImage.src = library.imageFile;
+    } else {
+      cardImage.src = library.imageFile;
+    }
+  } else {
+    cardImage.src = "placeholder.png";
+  }
+  libraryCard.appendChild(cardImage);
 
   const cardSubject = document.createElement("p");
-  cardSubject.textContent = subject;
-  collectionCard.appendChild(cardSubject);
+  cardSubject.textContent = library.subject;
+  libraryCard.appendChild(cardSubject);
 
-  collectionContent.appendChild(collectionCard);
+  librariesContainer.appendChild(libraryCard);
 
-  collectionCard.addEventListener("click", () => {
-    libraryModalSubject.textContent = subject;
+  libraryCard.addEventListener("click", () => {
+    libraryModalSubject.textContent = library.subject;
     openModal(libraryModal);
   });
-
-  form.reset();
-  collectionModal.style.display = "none";
-});
+}
 
 function createDefaultCards() {
   const defaultCards = [
     {
-      imgSrc: "images/letter.png",
+      imgSrc: "../images/letter.png",
       imgAlt: "Letter icon",
       subject: "Writers' Epistolary Tales",
+      books: [
+        new Book("Letters to a Young Poet", "Rainer Maria Rilke", 1929),
+        new Book("Letters to Milena", "Franz Kafka", 1952),
+        new Book("Letters from the Earth", "Mark Twain", 1962),
+        new Book("Letters from a Stoic", "Seneca", 65),
+      ],
     },
     {
-      imgSrc: "images/abstract-shape.png",
+      imgSrc: "../images/abstract-shape.png",
       imgAlt: "Abstract shapes",
-      subject: "Classic Art Explorations",
+      subject: "Experimental works",
+      books: [
+        new Book("In Search of Lost Time", "Marcel Proust", 1913),
+        new Book("The Man Without Qualities", "Robert Musil", 1930),
+        new Book("Our Lady of The Flowers", "Jean Genet", 1943),
+        new Book("Spring Snow: Sea of Fertility", "Yukio Mishima", 1969),
+      ],
     },
     {
-      imgSrc: "images/gargoyle.png",
+      imgSrc: "../images/gargoyle.png",
       imgAlt: "Gargoyle icon",
       subject: "Ghoulish Guide to Holiday Horror",
+      books: [
+        new Book("Frankenstein", "Mary Shelley", 1816),
+        new Book("A Christmas Carol", "Charles Dickens", 1843),
+        new Book("The Turn of the Screw", "Henry James", 1898),
+        new Book("The Phantom Coach", "Amelia Edwards", 1864),
+      ],
     },
     {
-      imgSrc: "images/cupid.png",
+      imgSrc: "../images/cupid.png",
       imgAlt: "Cupid icon",
       subject: "Eros",
+      books: [
+        new Book("The Ethics of Ambiguity", "Simone de Beauvoir", 1947),
+        new Book(
+          "Phenomenology of Spirit",
+          "Georg Wilhelm Friedrich Hegel",
+          1910
+        ),
+        new Book("Being and Time", "Martin Heidegger", 1927),
+        new Book("The Symposium and the Phaedrus", "Plato", 385),
+      ],
     },
     {
-      imgSrc: "images/kraken.png",
+      imgSrc: "../images/kraken.png",
       imgAlt: "Mythical sea monster icon",
       subject: "Greek Mythology Monsters",
+      books: [
+        new Book("The Song of Achilles", "Madeline Miller ", 2011),
+        new Book("Circe", "Madeline Miller", 2018),
+        new Book("The Golem and the Jinni", "Helene Wecker", 2013),
+        new Book("A Thousand Ships", "Natalie Haynes", 2019),
+      ],
     },
   ];
 
   defaultCards.forEach((card) => {
-    const collectionCard = document.createElement("div");
-    collectionCard.classList.add("collection-item");
+    const newLibrary = new Library(card.subject, card.imgSrc);
 
-    const cardImage = document.createElement("img");
-    cardImage.src = card.imgSrc;
-    cardImage.alt = card.imgAlt;
-    collectionCard.appendChild(cardImage);
-
-    const cardSubject = document.createElement("p");
-    cardSubject.textContent = card.subject;
-    collectionCard.appendChild(cardSubject);
-
-    collectionContent.appendChild(collectionCard);
-
-    collectionCard.addEventListener("click", () => {
-      libraryModalSubject.textContent = card.subject;
-      openModal(libraryModal);
+    card.books.forEach((book) => {
+      newLibrary.addBook(book);
     });
 
-    createNewBookRow();
+    createLibraryCard(newLibrary);
+    // createNewBookRow(newLibrary);
   });
 }
 
 window.addEventListener("load", createDefaultCards);
+
+createLibraryBtn.addEventListener("click", () => {
+  openModal(createLibraryModal);
+});
+
+createLibraryForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const subject = createLibraryForm.querySelector("#subject").value;
+  const imageFile = createLibraryForm.querySelector("#image").files[0];
+
+  const newLibrary = new Library(subject, imageFile);
+  createLibraryCard(newLibrary);
+
+  createLibraryForm.reset();
+  createLibraryModal.style.display = "none";
+});
 
 function closeModal(modal) {
   if (modal) {
