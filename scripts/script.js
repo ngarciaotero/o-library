@@ -6,7 +6,6 @@ const librariesContainer = document.querySelector(".libraries-container");
 const libraryModal = document.querySelector(".library-modal");
 const libraryModalSubject = document.querySelector(".library-subject");
 const addBookBtn = document.querySelector(".library-modal button");
-const bookTableBody = document.querySelector(".library-modal table tbody");
 const bookList = document.querySelector(".bookList");
 
 function Library(subject, imageFile) {
@@ -38,8 +37,7 @@ function createLibraryCard(library) {
   librariesContainer.appendChild(libraryCard);
 
   libraryCard.addEventListener("click", () => {
-    libraryModalSubject.textContent = library.subject;
-    openModal(libraryModal);
+    openLibraryModal(library);
   });
 }
 
@@ -136,14 +134,13 @@ function createDefaultCards() {
     });
 
     createLibraryCard(newLibrary);
-    // createNewBookRow(newLibrary);
   });
 }
 
 window.addEventListener("load", createDefaultCards);
 
 createLibraryBtn.addEventListener("click", () => {
-  openModal(createLibraryModal);
+  openCreateLibraryModal();
 });
 
 createLibraryForm.addEventListener("submit", function (event) {
@@ -155,8 +152,7 @@ createLibraryForm.addEventListener("submit", function (event) {
   const newLibrary = new Library(subject, imageFile);
   createLibraryCard(newLibrary);
 
-  createLibraryForm.reset();
-  createLibraryModal.style.display = "none";
+  closeModal(createLibraryModal);
 });
 
 function closeModal(modal) {
@@ -175,9 +171,24 @@ closeControls.forEach((closeControl) => {
   });
 });
 
-function openModal(modal) {
-  if (modal) {
-    modal.style.display = "block";
+function openCreateLibraryModal() {
+  createLibraryModal.style.display = "block";
+}
+
+function openLibraryModal(library) {
+  libraryModalSubject.textContent = library.subject;
+  clearBookList();
+
+  library.books.forEach((book) => {
+    createNewBookRow(book);
+  });
+
+  libraryModal.style.display = "block";
+}
+
+function clearBookList() {
+  while (bookList.firstChild) {
+    bookList.removeChild(bookList.firstChild);
   }
 }
 
