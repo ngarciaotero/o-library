@@ -29,22 +29,10 @@ function createLibraryCard(library) {
   const libraryCard = document.createElement("div");
   libraryCard.classList.add("library-card-item");
 
-  const cardImage = document.createElement("img");
-  if (library.imageFile instanceof File) {
-    cardImage.src = URL.createObjectURL(library.imageFile);
-  } else if (typeof library.imageFile === "string") {
-    if (library.imageFile.startsWith("data:")) {
-      cardImage.src = library.imageFile;
-    } else {
-      cardImage.src = library.imageFile;
-    }
-  } else {
-    cardImage.src = "placeholder.png";
-  }
+  const cardImage = createCardImage(library.imageFile);
   libraryCard.appendChild(cardImage);
 
-  const cardSubject = document.createElement("p");
-  cardSubject.textContent = library.subject;
+  const cardSubject = createCardSubject(library.subject);
   libraryCard.appendChild(cardSubject);
 
   librariesContainer.appendChild(libraryCard);
@@ -53,6 +41,28 @@ function createLibraryCard(library) {
     libraryModalSubject.textContent = library.subject;
     openModal(libraryModal);
   });
+}
+
+function createCardImage(imageFile) {
+  const cardImage = document.createElement("img");
+  if (imageFile instanceof File) {
+    cardImage.src = URL.createObjectURL(imageFile);
+  } else if (typeof imageFile === "string") {
+    if (imageFile.startsWith("data:")) {
+      cardImage.src = imageFile;
+    } else {
+      cardImage.src = imageFile;
+    }
+  } else {
+    cardImage.src = "placeholder.png";
+  }
+  return cardImage;
+}
+
+function createCardSubject(subject) {
+  const cardSubject = document.createElement("p");
+  cardSubject.textContent = subject;
+  return cardSubject;
 }
 
 function createDefaultCards() {
