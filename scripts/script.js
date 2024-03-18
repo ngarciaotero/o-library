@@ -176,12 +176,7 @@ function createNewBookRow(book) {
 
   const trashCell = createTrashCell();
   const titleCell = createTitleCell(book.title);
-
-  const authorCell = document.createElement("td");
-  const authorInput = document.createElement("input");
-  authorInput.type = "text";
-  authorInput.classList.add("author-input");
-  authorCell.appendChild(authorInput);
+  const authorCell = createAuthorCell(book.author);
 
   const yearCell = document.createElement("td");
   const yearInput = document.createElement("input");
@@ -314,6 +309,16 @@ function createTitleCell(title) {
   titleInput.value = title;
   titleCell.appendChild(titleInput);
   return titleCell;
+}
+
+function createAuthorCell(author) {
+  const authorCell = document.createElement("td");
+  const authorInput = document.createElement("input");
+  authorInput.type = "text";
+  authorInput.classList.add("author-input");
+  authorInput.value = author;
+  authorCell.appendChild(authorInput);
+  return authorCell;
 }
 
 addBookBtn.addEventListener("click", () => {
