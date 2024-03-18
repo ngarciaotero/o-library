@@ -178,17 +178,7 @@ function createNewBookRow(book) {
   const titleCell = createTitleCell(book.title);
   const authorCell = createAuthorCell(book.author);
   const yearCell = createYearCell(book.year);
-
-  const readCell = document.createElement("td");
-  const readLabel = document.createElement("label");
-  readLabel.classList.add("switch");
-  const readInput = document.createElement("input");
-  readInput.type = "checkbox";
-  const readSlider = document.createElement("span");
-  readSlider.classList.add("slider");
-  readLabel.appendChild(readInput);
-  readLabel.appendChild(readSlider);
-  readCell.appendChild(readLabel);
+  const readCell = createReadCell();
 
   const ratingCell = document.createElement("td");
   const ratingContainer = document.createElement("div");
@@ -324,6 +314,20 @@ function createYearCell(year) {
   yearInput.value = year;
   yearCell.appendChild(yearInput);
   return yearCell;
+}
+
+function createReadCell() {
+  const readCell = document.createElement("td");
+  const readLabel = document.createElement("label");
+  readLabel.classList.add("switch");
+  const readInput = document.createElement("input");
+  readInput.type = "checkbox";
+  const readSlider = document.createElement("span");
+  readSlider.classList.add("slider");
+  readLabel.appendChild(readInput);
+  readLabel.appendChild(readSlider);
+  readCell.appendChild(readLabel);
+  return readCell;
 }
 
 addBookBtn.addEventListener("click", () => {
