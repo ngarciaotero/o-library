@@ -179,22 +179,7 @@ function createNewBookRow(book) {
   const authorCell = createAuthorCell(book.author);
   const yearCell = createYearCell(book.year);
   const readCell = createReadCell();
-
-  const ratingCell = document.createElement("td");
-  const ratingContainer = document.createElement("div");
-  ratingContainer.classList.add("star-rating");
-  const stars = [];
-
-  for (let i = 0; i < 5; i++) {
-    const star = document.createElement("span");
-    star.classList.add("star");
-    const starSymbol = document.createTextNode("\u2605");
-    star.appendChild(starSymbol);
-    ratingContainer.appendChild(star);
-    stars.push(star);
-  }
-
-  ratingCell.appendChild(ratingContainer);
+  const ratingCell = createRatingCell();
 
   newRow.appendChild(trashCell);
   newRow.appendChild(titleCell);
@@ -202,59 +187,6 @@ function createNewBookRow(book) {
   newRow.appendChild(yearCell);
   newRow.appendChild(readCell);
   newRow.appendChild(ratingCell);
-
-  const closedTrashSrc = trashIcon.src;
-  const openTrashSrc = "../images/open-bin.png";
-
-  trashIcon.addEventListener("mouseenter", function () {
-    this.src = openTrashSrc;
-  });
-
-  trashIcon.addEventListener("mouseleave", function () {
-    this.src = closedTrashSrc;
-  });
-
-  const starsContainer = ratingContainer;
-  let clickedStarIndex = -1;
-
-  function handleStarHover(event) {
-    const hoveredStar = event.target;
-    const starIndex = Array.from(stars).indexOf(hoveredStar);
-
-    stars.forEach((star) => {
-      star.style.color = "#c0c0c0";
-    });
-
-    for (let i = 0; i <= starIndex; i++) {
-      stars[i].style.color = "rgb(255, 146, 4)";
-    }
-
-    if (clickedStarIndex !== -1) {
-      for (let i = 0; i <= clickedStarIndex; i++) {
-        stars[i].style.color = "rgb(255, 146, 4)";
-      }
-    }
-  }
-
-  function setStarRating(event) {
-    const clickedStar = event.target;
-    clickedStarIndex = Array.from(stars).indexOf(clickedStar);
-
-    for (let i = 0; i <= clickedStarIndex; i++) {
-      stars[i].style.color = "rgb(255, 146, 4)";
-    }
-  }
-
-  stars.forEach((star) => {
-    star.addEventListener("mouseover", handleStarHover);
-    star.addEventListener("click", setStarRating);
-  });
-
-  starsContainer.addEventListener("mouseleave", function () {
-    stars.forEach((star, index) => {
-      if (index > clickedStarIndex) star.style.color = "#c0c0c0";
-    });
-  });
 
   bookList.appendChild(newRow);
 }
@@ -328,6 +260,74 @@ function createReadCell() {
   readLabel.appendChild(readSlider);
   readCell.appendChild(readLabel);
   return readCell;
+}
+
+function createRatingCell() {
+  const ratingCell = document.createElement("td");
+  const ratingContainer = createStarRating();
+  ratingCell.appendChild(ratingContainer);
+  return ratingCell;
+}
+
+function createStarRating() {
+  const ratingContainer = document.createElement("div");
+  ratingContainer.classList.add("star-rating");
+  const stars = [];
+
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement("span");
+    star.classList.add("star");
+    const starSymbol = document.createTextNode("\u2605");
+    star.appendChild(starSymbol);
+    ratingContainer.appendChild(star);
+    stars.push(star);
+  }
+
+  addStarRatingEventListeners(ratingContainer, stars);
+  return ratingContainer;
+}
+
+function addStarRatingEventListeners(ratingContainer, stars) {
+  let clickedStarIndex = -1;
+
+  function handleStarHover(event) {
+    const hoveredStar = event.target;
+    const starIndex = Array.from(stars).indexOf(hoveredStar);
+
+    stars.forEach((star) => {
+      star.style.color = "#c0c0c0";
+    });
+
+    for (let i = 0; i <= starIndex; i++) {
+      stars[i].style.color = "rgb(255, 146, 4)";
+    }
+
+    if (clickedStarIndex !== -1) {
+      for (let i = 0; i <= clickedStarIndex; i++) {
+        stars[i].style.color = "rgb(255, 146, 4)";
+      }
+    }
+  }
+
+  function setStarRating(event) {
+    const clickedStar = event.target;
+    clickedStarIndex = Array.from(stars).indexOf(clickedStar);
+
+    for (let i = 0; i <= clickedStarIndex; i++) {
+      stars[i].style.color = "rgb(255, 146, 4)";
+    }
+  }
+
+  stars.forEach((star) => {
+    star.addEventListener("mouseover", handleStarHover);
+    star.addEventListener("click", setStarRating);
+  });
+
+  ratingContainer.addEventListener("mouseleave", function () {
+    stars.forEach((star, index) => {
+      if (index > clickedStarIndex) star.style.color = "#c0c0c0";
+    });
+  });
 }
 
 addBookBtn.addEventListener("click", () => {
