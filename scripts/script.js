@@ -174,12 +174,7 @@ function openModal(modal) {
 function createNewBookRow() {
   const newRow = document.createElement("tr");
 
-  const trashCell = document.createElement("td");
-  const trashIcon = document.createElement("img");
-  trashIcon.classList.add("trash-icon");
-  trashIcon.src = "../images/closed-bin.png";
-  trashIcon.alt = "Closed trash bin";
-  trashCell.appendChild(trashIcon);
+  const trashCell = createTrashCell();
 
   const titleCell = document.createElement("td");
   const titleInput = document.createElement("input");
@@ -287,7 +282,33 @@ function createNewBookRow() {
   });
 
   bookList.appendChild(newRow);
-  // return newRow;
+}
+
+function createTrashCell() {
+  const trashCell = document.createElement("td");
+  const trashIcon = createTrashIcon();
+  trashCell.appendChild(trashIcon);
+  return trashCell;
+}
+
+function createTrashIcon() {
+  const trashIcon = document.createElement("img");
+  trashIcon.classList.add("trash-icon");
+  trashIcon.src = "../images/closed-bin.png";
+  trashIcon.alt = "Closed trash bin";
+
+  const closedTrashSrc = trashIcon.src;
+  const openTrashSrc = "../images/open-bin.png";
+
+  trashIcon.addEventListener("mouseenter", function () {
+    this.src = openTrashSrc;
+  });
+
+  trashIcon.addEventListener("mouseleave", function () {
+    this.src = closedTrashSrc;
+  });
+
+  return trashIcon;
 }
 
 addBookBtn.addEventListener("click", () => {
