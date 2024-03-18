@@ -171,16 +171,11 @@ function openModal(modal) {
   }
 }
 
-function createNewBookRow() {
+function createNewBookRow(book) {
   const newRow = document.createElement("tr");
 
   const trashCell = createTrashCell();
-
-  const titleCell = document.createElement("td");
-  const titleInput = document.createElement("input");
-  titleInput.type = "text";
-  titleInput.classList.add("title-input");
-  titleCell.appendChild(titleInput);
+  const titleCell = createTitleCell(book.title);
 
   const authorCell = document.createElement("td");
   const authorInput = document.createElement("input");
@@ -309,6 +304,16 @@ function createTrashIcon() {
   });
 
   return trashIcon;
+}
+
+function createTitleCell(title) {
+  const titleCell = document.createElement("td");
+  const titleInput = document.createElement("input");
+  titleInput.type = "text";
+  titleInput.classList.add("title-input");
+  titleInput.value = title;
+  titleCell.appendChild(titleInput);
+  return titleCell;
 }
 
 addBookBtn.addEventListener("click", () => {
