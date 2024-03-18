@@ -236,7 +236,18 @@ function createTrashIcon() {
     this.src = closedTrashSrc;
   });
 
+  trashIcon.addEventListener("click", function () {
+    const bookRow = trashIcon.closest("tr");
+    removeBook(bookRow);
+  });
+
   return trashIcon;
+}
+
+function removeBook(bookRow) {
+  if (bookRow) {
+    bookRow.remove();
+  }
 }
 
 function createTitleCell(title) {
