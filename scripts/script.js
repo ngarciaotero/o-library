@@ -9,6 +9,7 @@ const addBookBtn = document.querySelector(".library-modal button");
 const bookList = document.querySelector(".bookList");
 const createBookModal = document.querySelector(".create-book-modal");
 const createBookForm = document.querySelector(".create-book-form");
+let currentLibrary;
 
 function Library(subject, imageFile) {
   this.subject = subject;
@@ -39,6 +40,7 @@ function createLibraryCard(library) {
   librariesContainer.appendChild(libraryCard);
 
   libraryCard.addEventListener("click", () => {
+    currentLibrary = library;
     openLibraryModal(library);
   });
 }
@@ -193,6 +195,10 @@ function clearBookList() {
   while (bookList.firstChild) {
     bookList.removeChild(bookList.firstChild);
   }
+}
+
+function openCreateBookModal() {
+  createBookModal.style.display = "block";
 }
 
 function createNewBookRow(book) {
@@ -366,6 +372,19 @@ function addStarRatingEventListeners(ratingContainer, stars) {
 }
 
 addBookBtn.addEventListener("click", () => {
-  const newRow = createNewBookRow();
-  bookTableBody.appendChild(newRow);
+  openCreateBookModal();
+});
+
+createBookForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const title = createBookForm.querySelector(".title").value;
+  const author = createBookForm.querySelector(".author").value;
+  const year = createBookForm.querySelector(".year").value;
+
+  const newBook = new Book(title, author, year);
+  currentLibrary.addBook(newBook);
+  createNewBookRow(newBook);
+
+  closeModal(createBookModal);
 });
