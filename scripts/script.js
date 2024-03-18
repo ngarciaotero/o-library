@@ -7,6 +7,8 @@ const libraryModal = document.querySelector(".library-modal");
 const libraryModalSubject = document.querySelector(".library-subject");
 const addBookBtn = document.querySelector(".library-modal button");
 const bookList = document.querySelector(".bookList");
+const createBookModal = document.querySelector(".create-book-modal");
+const createBookForm = document.querySelector(".create-book-form");
 
 function Library(subject, imageFile) {
   this.subject = subject;
@@ -158,16 +160,17 @@ createLibraryForm.addEventListener("submit", function (event) {
 function closeModal(modal) {
   if (modal) {
     modal.style.display = "none";
-    if (modal === createLibraryModal) {
+    if (modal === createLibraryModal || modal === createBookModal) {
       createLibraryForm.reset();
+      createBookForm.reset();
     }
   }
 }
 
 closeControls.forEach((closeControl) => {
   closeControl.addEventListener("click", () => {
-    closeModal(libraryModal);
-    closeModal(createLibraryModal);
+    const modal = closeControl.closest("div");
+    closeModal(modal);
   });
 });
 
