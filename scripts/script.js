@@ -37,11 +37,29 @@ function createLibraryCard(library) {
   const cardSubject = createCardSubject(library.subject);
   libraryCard.appendChild(cardSubject);
 
+  const removeSign = document.createElement("span");
+  removeSign.classList.add("close");
+  removeSign.textContent = "\u00D7";
+  libraryCard.appendChild(removeSign);
+
   librariesContainer.appendChild(libraryCard);
+
+  removeSign.addEventListener("click", (event) => {
+    event.stopPropagation();
+    libraryCard.remove();
+  });
 
   libraryCard.addEventListener("click", () => {
     currentLibrary = library;
     openLibraryModal(library);
+  });
+
+  libraryCard.addEventListener("mouseover", () => {
+    removeSign.style.display = "block";
+  });
+
+  libraryCard.addEventListener("mouseleave", () => {
+    removeSign.style.display = "none";
   });
 }
 
