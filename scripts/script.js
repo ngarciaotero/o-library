@@ -88,7 +88,7 @@ function createCardSubject(subject) {
 function createDefaultCards() {
   const defaultCards = [
     {
-      imgSrc: "../images/letter.png",
+      imgSrc: "images/letter.png",
       imgAlt: "Letter icon",
       subject: "Writers' Epistolary Tales",
       books: [
@@ -99,7 +99,7 @@ function createDefaultCards() {
       ],
     },
     {
-      imgSrc: "../images/abstract-shape.png",
+      imgSrc: "images/abstract-shape.png",
       imgAlt: "Abstract shapes",
       subject: "Experimental works",
       books: [
@@ -110,7 +110,7 @@ function createDefaultCards() {
       ],
     },
     {
-      imgSrc: "../images/gargoyle.png",
+      imgSrc: "images/gargoyle.png",
       imgAlt: "Gargoyle icon",
       subject: "Ghoulish Guide to Holiday Horror",
       books: [
@@ -121,7 +121,7 @@ function createDefaultCards() {
       ],
     },
     {
-      imgSrc: "../images/cupid.png",
+      imgSrc: "images/cupid.png",
       imgAlt: "Cupid icon",
       subject: "Eros",
       books: [
@@ -136,7 +136,7 @@ function createDefaultCards() {
       ],
     },
     {
-      imgSrc: "../images/kraken.png",
+      imgSrc: "images/kraken.png",
       imgAlt: "Mythical sea monster icon",
       subject: "Greek Mythology Monsters",
       books: [
@@ -249,11 +249,11 @@ function createTrashCell() {
 function createTrashIcon() {
   const trashIcon = document.createElement("img");
   trashIcon.classList.add("trash-icon");
-  trashIcon.src = "../images/closed-bin.png";
+  trashIcon.src = "images/closed-bin.png";
   trashIcon.alt = "Closed trash bin";
 
   const closedTrashSrc = trashIcon.src;
-  const openTrashSrc = "../images/open-bin.png";
+  const openTrashSrc = "images/open-bin.png";
 
   trashIcon.addEventListener("mouseenter", function () {
     this.src = openTrashSrc;
