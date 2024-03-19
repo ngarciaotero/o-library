@@ -335,3 +335,15 @@ tr:nth-child(odd) {
   transform: scale(1.1);
   background-color: rgb(137, 179, 237);
 }
+
+.library-card-item .close {
+  display: none;
+  position: absolute;
+  top: -10px;
+  right: 9px;
+  color: gray;
+}
+
+.library-card-item .close:hover {
+  color: red;
+}
